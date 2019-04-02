@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<description>Spring配置文件</description>
+
+	<beans>
+		<bean id="dataSource" name="default" class="profile1.DataSource">
+			<constructor-arg name="name" value="Default DataSource"></constructor-arg>
+		</bean>
+	</beans>
+
+	<beans profile="dev">
+		<bean id="dataSource" name="dev" class="profile1.DataSource">
+			<constructor-arg name="name" value="Dev DataSource"></constructor-arg>
+		</bean>
+	</beans>
+
+	<beans profile="prod">
+		<bean id="dataSource" name="prod" class="profile1.DataSource">
+			<constructor-arg name="name" value="Prod DataSource"></constructor-arg>
+		</bean>
+	</beans>
+</beans>

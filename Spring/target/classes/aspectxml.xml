@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+    <!--开启自动代理-->
+    <aop:aspectj-autoproxy/>
+    
+    <!--装配基本类-->
+    <bean class="aspectxml.BaseBean" id="baseBean" name="baseBean"/>
+    
+    <!--装配切面类-->
+    <bean class="aspectxml.NewBaseBeanAspect" id="newBaseBeanAspect"/>
+    
+    <!--aop配置-->
+    <aop:config>
+        <!--配置切面-->
+        <aop:aspect ref="newBaseBeanAspect">
+            <!--定义切点-->
+            <aop:pointcut id="pointCut" expression="execution(* aspectxml.*.*(..))"/>
+            <!--定义前置通知-->
+            <aop:before method="beforeInvoke" pointcut-ref="pointCut"/>
+            <!--定义后置通知-->
+            <aop:after method="afterInvoke" pointcut-ref="pointCut"/>
+            <!--定义方法执行返回后通知-->
+            <aop:after-returning method="afterReturning" pointcut-ref="pointCut"/>
+            <!--定义方法异常后通知-->
+            <aop:after-throwing method="afterThrowing" pointcut-ref="pointCut"/>
+            <!--定义方法环绕通知通知-->
+            <!-- <aop:around method="aroundInvoke" pointcut-ref="pointCut"/> -->
+        </aop:aspect>
+    </aop:config>
+</beans>

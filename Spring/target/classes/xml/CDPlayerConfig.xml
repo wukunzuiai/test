@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    
+    <!--定义一个名为cdBean的Bean-->
+    <bean name="cdPlayer" class="hunhe.CDPlayerImpl">
+        <!--将上面配置的cdBean类通过ref属性注入到cdPlayer构造方法中名为cdBean的参数中-->
+        <constructor-arg name = "cdBean" ref = "cdBean"/>
+    </bean>
+</beans>
